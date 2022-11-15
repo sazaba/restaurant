@@ -1,9 +1,10 @@
+import axios from 'axios'
 import Image from 'next/image'
 import React from 'react'
 import styles from '../../styles/Order.module.css'
 
-const Order = () => {
-    const status = 0
+const Order = ({ order }) => {
+    const status = order.status
 
     const statusClass = (index) => {
         if (index - status < 1) return styles.done
@@ -17,31 +18,31 @@ const Order = () => {
                     <table className='w-[100%] border-spacing-5'>
                         <tbody>
                             <tr className='flex justify-around items-center mb-2'>
-                                <th className='w-1/4'>Order Id</th>
-                                <th className='w-1/4'>Customer</th>
-                                <th className='w-1/4'>Adress</th>
+                                <th className='w-1/4'>Numero de Orden</th>
+                                <th className='w-1/4'>Cliente</th>
+                                <th className='w-1/4'>Mesa</th>
                                 <th className='w-1/4'>Total</th>
                             </tr>
                             <tr className='flex justify-around items-center'>
                                 <td className='w-1/4 '>
                                     <div className='flex justify-center'>
-                                        <span className='text-red-600 font-bold'>12</span>
+                                        <span className='text-red-600 font-bold'>{order._id}</span>
                                     </div>
 
                                 </td>
                                 <td className='w-1/4'>
                                     <div className='flex justify-center'>
-                                        <span className='text-center'>Santiago Zappa</span>
+                                        <span className='text-center'>{order.customer}</span>
                                     </div>
                                 </td>
                                 <td className='w-1/4'>
                                     <div className='flex justify-center'>
-                                        <span>Elton st. 212 LA</span>
+                                        <span>{order.address}</span>
                                     </div>
                                 </td>
                                 <td className='w-1/4'>
                                     <div className='flex justify-center'>
-                                        <span className='font-bold '>$39.80</span>
+                                        <span className='font-bold '>${order.total}</span>
                                     </div>
                                 </td>
                             </tr>
@@ -86,7 +87,7 @@ const Order = () => {
             <div className='basis-2/6 flex flex-col items-center justify-center gap-4'>
                 <h2 className='text-3xl font-bold'>TOTAL CART</h2>
                 <div>
-                    <b>Total:</b> $79.60
+                    <b>Total:</b> ${order.total}
                 </div>
                 <button className='bg-lime-500 text-white font-semibold px-3 py-1 rounded-md cursor-not-allowed disabled'>Already Paid</button>
 
@@ -94,5 +95,15 @@ const Order = () => {
         </div>
     )
 }
+
+export const getServerSideProps = async ({ params }) => {
+    const res = await axios.get(`http://localhost:3000/api/orders/${params.id}`);
+    return {
+        props: {
+            order: res.data
+        }
+    }
+}
+
 
 export default Order
