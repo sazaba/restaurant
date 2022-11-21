@@ -1,7 +1,9 @@
 import axios from 'axios'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import AddButton from '../add'
 
 const index = ({ orders, products }) => {
 
@@ -49,7 +51,10 @@ const index = ({ orders, products }) => {
 
 
     return (
-        <div className='p-[50px] flex'>
+        <div className='p-[50px] flex relative'>
+            <Link href='/add'>
+                <button className='absolute top-0 left-0 bg-red-600 rounded-md px-2 py-1 m-4 text-white font-medium cursor-pointer'>Add New Pizza</button>
+            </Link>
             <div className='flex-1'>
                 <h1>Productos</h1>
                 <table className='w-[100%] border-spacing-[20px] text-left'>
