@@ -15,7 +15,7 @@ const index = ({ orders, products }) => {
 
     const handleDelete = async (id) => {
         try {
-            const res = await axios.delete('http://localhost:3000/api/products/' + id)
+            const res = await axios.delete(`${process.env.SERVER_URL}/api/products/` + id)
             setPizzaList(pizzaList.filter((pizza) => pizza._id !== id))
 
         } catch (error) {
@@ -24,7 +24,7 @@ const index = ({ orders, products }) => {
     }
     const handleDeleteOrder = async (id) => {
         try {
-            const res = await axios.delete('http://localhost:3000/api/orders/' + id)
+            const res = await axios.delete(`${process.env.SERVER_URL}/api/orders/` + id)
             setOrderList(orderList.filter((order) => order._id !== id))
         } catch (error) {
             console.log(error)
@@ -38,7 +38,7 @@ const index = ({ orders, products }) => {
         router.reload(window.location.pathname)
 
         try {
-            const res = await axios.put('http://localhost:3000/api/orders/' + id, { status: currentStatus + 1 })
+            const res = await axios.put(`${process.env.SERVER_URL}/api/orders/` + id, { status: currentStatus + 1 })
             setOrderList([
                 res.data,
                 ...orderList.filer((order) => order._id !== id)
@@ -121,8 +121,8 @@ const index = ({ orders, products }) => {
 }
 
 export const getServerSideProps = async () => {
-    const productRes = await axios.get(`http://localhost:3000/api/products`);
-    const orderRes = await axios.get(`http://localhost:3000/api/orders`);
+    const productRes = await axios.get(`${process.env.SERVER_URL}/api/products/`);
+    const orderRes = await axios.get(`${process.env.SERVER_URL}/api/orders/`);
     return {
         props: {
             orders: orderRes.data,
