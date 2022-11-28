@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 import Image from 'next/image'
 import React, { useState } from 'react'
@@ -93,7 +94,7 @@ const Product = ({ pizza }) => {
 };
 
 export const getServerSideProps = async ({ params }) => {
-    const res = await axios.get(`http://restaurant-delta-roan.vercel.app/api/products/${params.id}`);
+    const res = await axios.get(`http://localhost:3000/api/products/${params.id}`);
     return {
         props: {
             pizza: res.data
