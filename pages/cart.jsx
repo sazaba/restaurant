@@ -15,9 +15,8 @@ const cart = () => {
     const [cash, setCash] = useState(false)
 
     const createOrder = async (data) => {
-        const url = process.env.SERVER_URL
         try {
-            const res = await axios.post(`${url}/api/order`, data);
+            const res = await axios.post(`https://restaurant-api-ndfc.onrender.com/api/order`, data);
             res.status === 201 && router.push('/orders/' + res.data._id);
             dispatch(reset())
 
@@ -25,6 +24,7 @@ const cart = () => {
             console.log(error)
 
         }
+
     }
     return (
         <div className='p-[50px] flex flex-col lg:flex w-[100%]'>
