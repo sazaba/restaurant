@@ -11,6 +11,7 @@ export default function Home({ pizzaList }) {
         <title>Pizza Restaurant in New York</title>
         <meta name="description" content="Restaurante de alta calidad" />
         <link rel="icon" href="/favicon.ico" />
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
       <PizzaList pizzaList={pizzaList} />
 
