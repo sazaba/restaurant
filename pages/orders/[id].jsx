@@ -27,7 +27,7 @@ const Order = ({ order }) => {
                             <tr className='flex justify-around items-center'>
                                 <td className='w-1/4 '>
                                     <div className='flex justify-center'>
-                                        <span className='text-red-600 font-bold'>{order._id}</span>
+                                        <span className='text-red-600 font-bold'>{order._id.slice(0, 5) + '...'}</span>
                                     </div>
 
                                 </td>

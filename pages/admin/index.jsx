@@ -13,18 +13,10 @@ const index = ({ orders, products }) => {
     const router = useRouter()
 
 
-    const handleDelete = async (id) => {
-        try {
-            const res = await axios.delete(`${process.env.SERVER_URL}/api/products/` + id)
-            setPizzaList(pizzaList.filter((pizza) => pizza._id !== id))
 
-        } catch (error) {
-            console.log(error)
-        }
-    }
     const handleDeleteOrder = async (id) => {
         try {
-            const res = await axios.delete(`${process.env.SERVER_URL}/api/orders/` + id)
+            const res = await axios.delete(`http://localhost:5000/api/orderid/` + id)
             setOrderList(orderList.filter((order) => order._id !== id))
         } catch (error) {
             console.log(error)
@@ -38,7 +30,7 @@ const index = ({ orders, products }) => {
         router.reload(window.location.pathname)
 
         try {
-            const res = await axios.put(`${process.env.SERVER_URL}/api/orders/` + id, { status: currentStatus + 1 })
+            const res = await axios.put(`http://restaurant-api-ndfc.onrender.com/api/orderid/` + id, { status: currentStatus + 1 })
             setOrderList([
                 res.data,
                 ...orderList.filer((order) => order._id !== id)
@@ -51,42 +43,9 @@ const index = ({ orders, products }) => {
 
 
     return (
-        <div className='p-[50px] flex relative'>
-            <Link href='/add'>
-                <button className='absolute top-0 left-0 bg-red-600 rounded-md px-2 py-1 m-4 text-white font-medium cursor-pointer'>Add New Pizza</button>
-            </Link>
-            <div className='flex-1'>
-                <h1>Productos</h1>
-                <table className='w-[100%] border-spacing-[20px] text-left'>
-                    <tbody>
-                        <tr>
-                            <th>Image</th>
-                            <th>Id</th>
-                            <th>Title</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                        </tr>
-                    </tbody>
-                    {pizzaList.map((product) => (
-                        <tbody key={product._id}>
-                            <tr>
-                                <td><Image src={product.img} alt='' width={100} height={100} /></td>
-                                <td>{product._id.slice(0, 5)}...</td>
-                                <td>{product.title}</td>
-                                <td>${product.prices[0]}</td>
-                                <td>
-                                    <button className='text-white border-none bg-teal-600 mx-[10px]'>Edit</button>
-                                    <button className='text-white border-none bg-red-700' onClick={() => handleDelete(product._id)}>Delete</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    ))}
-                </table>
-            </div>
-
-
-            <div className='flex-1'>
-                <h1>Ordenes</h1>
+        <div className='w-[100%] p-[50px] flex relative'>
+            <div className='flex flex-col flex-1'>
+                <h1 className='font-bold text-lg mb-10'>Ordenes</h1>
                 <table className='w-[100%] border-spacing-[20px] text-left'>
                     <tbody>
                         <tr>
@@ -107,8 +66,8 @@ const index = ({ orders, products }) => {
                                 <td>{order.method === 0 ? <span>Pago en Efectivo</span> : <span>Pagado</span>}</td>
                                 <td>{status[order.status]}</td>
                                 <td>
-                                    <button className='text-white border-none bg-teal-600 px-[10px]' onClick={() => handleStatus(order._id)}>Next stage</button>
-                                    <button className='text-white border-none bg-red-700' onClick={() => handleDeleteOrder(order._id)}>Delete</button>
+                                    <button className='text-white border-none rounded-md p-1 mr-1  bg-teal-600 px-[10px]' onClick={() => handleStatus(order._id)}>Next stage</button>
+                                    <button className='text-white border-none rounded-md p-1 mr-1  bg-red-700' onClick={() => handleDeleteOrder(order._id)}>Delete</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -121,12 +80,12 @@ const index = ({ orders, products }) => {
 }
 
 export const getServerSideProps = async () => {
-    const productRes = await axios.get(`${process.env.SERVER_URL}/api/products/`);
-    const orderRes = await axios.get(`${process.env.SERVER_URL}/api/orders/`);
+
+    const orderRes = await axios.get(`${process.env.SERVER_URL}/api/order/`);
     return {
         props: {
             orders: orderRes.data,
-            products: productRes.data
+
         }
     }
 }

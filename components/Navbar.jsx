@@ -11,20 +11,26 @@ const Navbar = () => {
                 <Image width='32' height='32' src='/img/telephone.png' alt='' />
             </div>
             <div className='mr-[20px] text-white'>
-                <div className='text-[12px] font-[500] '>ORDER NOW!</div>
-                <div className='text-[20px] font-bold'>012 345 678</div>
+                <div className='text-[12px] font-[500] cursor-pointer '>ORDER NOW!</div>
+                <div className='text-[20px] font-bold cursor-pointer'>012 345 678</div>
             </div>
             <div className=' basis-1/2 hidden lg:flex'>
                 <ul className='flex text-white items-center p-0 '>
-                    <li className='m-[20px] font-[500]'>Homepage</li>
-                    <li className='m-[20px] font-[500]'>Products</li>
-                    <li className='m-[20px] font-[500]'>Menu</li>
                     <Link href='/'>
-                        <Image src='/img/logo.png' alt='' width='160' height='69' />
+                        <li className='m-[20px] font-[500] cursor-pointer'>Homepage</li>
                     </Link>
-                    <li className='m-[20px] font-[500]'>Events</li>
-                    <li className='m-[20px] font-[500]'>Blog</li>
-                    <li className='m-[20px] font-[500]'>Contact</li>
+                    <Link href='/admin'>
+                        <li className='m-[20px] font-[500] cursor-pointer'>Orders</li>
+                    </Link>
+                    <Link href='/'>
+                        <li className='m-[20px] font-[500] cursor-pointer'>Menu</li>
+                    </Link>
+                    <Link style={{ width: '80px' }} href='/'>
+                        <Image src='/img/logo.png' alt='' width='250' height='250' />
+                    </Link>
+                    <li className='m-[20px] font-[500] cursor-pointer'>Events</li>
+                    <li className='m-[20px] font-[500] cursor-pointer'>Blog</li>
+                    <li className='m-[20px] font-[500] cursor-pointer'>Contact</li>
                 </ul>
             </div>
             <Link href='/cart'>

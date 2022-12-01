@@ -8,8 +8,8 @@ const OrderDetail = ({ total, createOrder }) => {
         createOrder({ customer, address, total, method: 0 })
     }
     return (
-        <div className='w-[100%] h-[100vh] absolute top-0 left-0 flex items-center justify-center bg-slate-400 z-20'>
-            <div className='w-[500px] bg-white rounded-3xl p-14 flex flex-col items-center justify-center'>
+        <div className='w-[100%] h-[100vh] absolute top-0 left-0 flex items-center justify-center z-10 bg-white)]'>
+            <div className='w-[500px] bg-white border-2 rounded-3xl p-14 flex flex-col items-center justify-center'>
                 <h1 className='font-[300] text-md mb-5'>Completa esta informacion para llevar tu pedido</h1>
                 <div className='flex flex-col w-[100%]'>
                     <label className='mb-3 font-bold'>Nombre</label>

@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <div className='max-h-screen bg-gray-900 flex overflow-hidden text-center'>
             <div className='basis-4/12 relative hidden lg:flex '>
-                <Image src='/img/bg.png' alt='' width={700} height={480} objectFit='cover' />
+                <Image src='/img/bg.png' alt='' width={700} height={480} />
             </div>
             <div className='lg:basis-4/6 basis-full relative lg:flex p-[50px] justify-between'>
                 <div className='basis-4/12 p-[20px]'>
