@@ -16,7 +16,7 @@ const index = ({ orders, products }) => {
 
     const handleDeleteOrder = async (id) => {
         try {
-            const res = await axios.delete(`http://localhost:5000/api/orderid/` + id)
+            const res = await axios.delete(`http://restaurant-api-ndfc.onrender.com/api/orderid/` + id)
             setOrderList(orderList.filter((order) => order._id !== id))
         } catch (error) {
             console.log(error)
