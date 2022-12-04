@@ -2,16 +2,6 @@ import React from 'react'
 import PizzaCard from './PizzaCard'
 
 
-export const getServerSideProps = async () => {
-    const res = await axios.get(`${process.env.SERVER_URL}/api/prod`);
-    return {
-        props: {
-            pizzaList: res.data
-        }
-    }
-}
-
-
 
 const PizzaList = ({ pizzaList }) => {
     return (
