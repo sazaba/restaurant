@@ -19,7 +19,8 @@ export default function Home({ pizzaList }) {
   )
 }
 
-export const getStaticProps = async () => {
+
+export const getServerSideProps = async () => {
   const res = await axios.get(`${process.env.SERVER_URL}/api/prod`);
   return {
     props: {
@@ -27,3 +28,4 @@ export const getStaticProps = async () => {
     }
   }
 }
+
