@@ -21,7 +21,12 @@ export default function Home({ pizzaList }) {
 
 
 export const getServerSideProps = async () => {
-  const res = await axios.get(`${process.env.SERVER_URL}/api/prod`);
+  try {
+    const res = await axios.get(`${process.env.SERVER_URL}/api/prod`);
+  } catch (error) {
+    console.log(error)
+  }
+
   return {
     props: {
       pizzaList: res.data
