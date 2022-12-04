@@ -17,3 +17,12 @@ const PizzaList = ({ pizzaList }) => {
 }
 
 export default PizzaList
+
+export const getStaticProps = async () => {
+    const res = await axios.get(`${process.env.SERVER_URL}/api/prod`);
+    return {
+        props: {
+            pizzaList: res.data
+        }
+    }
+}
