@@ -3,7 +3,7 @@ import Head from 'next/head'
 import PizzaList from '../components/PizzaList'
 
 
-export default function Home() {
+export default function Home({ pizzaList }) {
 
   return (
     <div >
@@ -13,9 +13,17 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
-      <PizzaList />
+      <PizzaList pizzaList={pizzaList} />
 
     </div>
   )
 }
 
+export const getStaticProps = async () => {
+  const res = await axios.get(`${process.env.SERVER_URL}/api/prod`);
+  return {
+    props: {
+      pizzaList: res.data
+    }
+  }
+}
