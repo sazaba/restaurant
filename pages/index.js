@@ -3,7 +3,7 @@ import Head from 'next/head'
 import PizzaList from '../components/PizzaList'
 
 
-export default function Home({ pizzaList }) {
+export default function Home() {
 
   return (
     <div >
@@ -13,7 +13,7 @@ export default function Home({ pizzaList }) {
         <link rel="icon" href="/favicon.ico" />
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
-      <PizzaList pizzaList={pizzaList} />
+      <PizzaList />
 
     </div>
   )
